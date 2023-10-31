@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         columnGap: 5
     },
     dot: {
-        width: 12,
-        height: 12,
+        width: 10,
+        height: 10,
         borderRadius: 25,
     }
 })

@@ -5,6 +5,7 @@ import SearchBarComponent from '../components/SearchBarComponent';
 import CarouselItemComponent from '../components/CarouselItemComponent';
 import CategoryComponent from '../components/CategoryComponent';
 import ProductComponent from '../components/ProductComponent';
+import PromotionComponent from '../components/PromotionComponent';
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <CarouselItemComponent/>
         <CategoryComponent/>
         <ProductComponent/>
+        <PromotionComponent/>
       </ScrollView>
       </View>
   )
@@ -23,6 +25,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     rowGap: 5,
-    padding: 10
+    paddingHorizontal: 10
   }
 })

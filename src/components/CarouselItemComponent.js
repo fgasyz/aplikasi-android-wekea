@@ -10,7 +10,7 @@ export default function CarouselItemComponent() {
   const [currentImage, setCurrentImage] = React.useState(0)
 
   return (
-    <View style={{ alignItems: 'center', borderRadius: 15, position: 'relative'}}>
+    <View style={{alignItems: 'center', borderRadius: 15, position: 'relative'}}>
         <Carousel
             loop
             width={width - 20}

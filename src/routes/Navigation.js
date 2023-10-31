@@ -34,8 +34,10 @@ const BottomTab = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          marginBottom: 10,
-          marginHorizontal: 10,
+          position: 'absolute',
+          bottom: 20,
+          left: 10,
+          right: 10,
           borderRadius: 10,
         },
         tabBarHideOnKeyboard: true

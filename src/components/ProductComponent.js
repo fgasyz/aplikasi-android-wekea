@@ -5,7 +5,7 @@ import {images} from '../images'
 
 export default function ProductComponent() {
   return (
-    <View>
+    <View style={{flex: 1, marginBottom: 10}}>
         <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: 'black'}}>Popular</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.contentContainer}>
             {images.map((item, index) => (
