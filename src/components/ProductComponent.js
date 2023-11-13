@@ -13,7 +13,7 @@ export default function ProductComponent() {
                     <Card.Cover source={{ uri: item }} style={styles.image}/>
                     <Card.Content style={{paddingTop: 5}}>
                         <Text style={{fontWeight: '500', color: 'black'}}>Sofa</Text>
-                        <Text>Rp. 10.000.000</Text>
+                        <Text style={{color: "black"}}>Rp. 10.000.000</Text>
                     </Card.Content>
                 </Card>
             ))}

@@ -8,7 +8,7 @@ export default function SearchBarComponent() {
     <View style={styles.container}>
         <View style={styles.textInput}>
           <Ionicons name='search' color={'grey'} size={22}/>
-          <TextInput placeholder='masukkan kata kunci..'/>
+          <TextInput placeholder='masukkan kata kunci..' placeholderTextColor={'black'}/>
         </View>
           <IconButton icon='menu'/>
     </View>

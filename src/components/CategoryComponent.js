@@ -16,7 +16,7 @@ export default function CategoryComponent() {
                     height: 40,
                     borderRadius: 10
                 }} activeOpacity={0.7}>
-                  <Text style={{textAlign: 'center'}}>{item}</Text>
+                  <Text style={{textAlign: 'center', color: "black"}}>{item}</Text>
                 </TouchableOpacity>
             ))}
         </ScrollView>

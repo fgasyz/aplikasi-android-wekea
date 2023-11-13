@@ -1,19 +1,30 @@
-import { StyleSheet, View, Dimensions } from 'react-native'
-import React, { useState } from 'react'
-import MapView from 'react-native-maps'
+import { StyleSheet, View, Dimensions, Image, Animated } from 'react-native'
+import React, { useRef, useState } from 'react'
+import MapView, { Marker } from 'react-native-maps'
 import Carousel from 'react-native-reanimated-carousel'
 import { Card, IconButton, Text } from 'react-native-paper'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import store from '../images/store.png'
+
 
 export default function MapsPage() {
   const width = Dimensions.get('window').width;
 
-  const [position, setPosition] = useState({});
+  const mapRef = useRef(null)
+  const scrollCarouselRef = useRef(null);
+  const mapAnimation = new Animated.Value(0)
 
-  const goToPosition = (lattitude, longitude) => {
-    setPosition({lattitude: lattitude, longitude: longitude})
-    console.log(position)
+  const onPressMarker = (mapData) => {
+    const markerId = mapData._targetInst.return.key;
+    scrollCarouselRef.current.scrollTo({index: +markerId, animated: true})
   }
+
+  const region = {
+    latitude:  37.78825,
+    longitude:  -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,        
+}
 
   const markers = [
     {
@@ -42,34 +53,61 @@ export default function MapsPage() {
     },
   ];
 
+  const interpolation = markers.map((_, index) => {
+    const inputRange = [[index-1] * width, index * width, [index + 1] * width]
+    const scale = mapAnimation.interpolate({
+      inputRange,
+      outputRange: [1, 1.5, 1],
+      extrapolate: 'clamp'
+    })
+    return {scale}
+  })
+
   return (
     <View style={StyleSheet.absoluteFillObject}>
-      <MapView style={StyleSheet.absoluteFillObject} initialRegion={{
-            latitude: position.latitude ? position.lattitude : 37.78825,
-            longitude: position.longitude ? position.longitude : -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,        
-      }} showsUserLocation={true}/>
+      <MapView style={StyleSheet.absoluteFillObject} ref={mapRef} initialRegion={region} showsUserLocation={true}>
+      {
+        markers.map((marker, index) => {
+          return <Marker key={index} coordinate={marker.coordinate} onPress={(e) => onPressMarker(e)}>
+            <Animated.Image source={store} style={{width: 20, height: 20, transform:[
+              {
+                scale: interpolation[index].scale
+              }
+            ]}} />
+          </Marker>
+        })
+      }
+      </MapView>
       <View style={{position: 'absolute', top: 100, left: 50}} />
       <View style={{alignItems: 'center', borderRadius: 15, marginTop: 10}}>
-        <Carousel
+        <Carousel ref={scrollCarouselRef}
             loop
             width={width - 20}
             height={width }
             autoPlay={true}
             data={markers}
             scrollAnimationDuration={3000}
-            onSnapToItem={(index) => console.log(index)}
+            onProgressChange={(progres) => {
+              mapAnimation.setValue(Math.abs(progres))
+            }}
+            onSnapToItem={(index) => {
+              const {coordinate} = markers[index]
+              mapRef.current.animateToRegion({
+                ...coordinate,
+                latitudeDelta: region.latitudeDelta,
+                longitudeDelta: region.longitudeDelta
+              })
+            }}
             renderItem={({ index }) => (
               <Card style={styles.card}>
                 <Card.Cover source={{uri: markers[index].image}} style={styles.image}/>
-                <Card.Content style={{marginTop: 10}}>
+                <Card.Content style={{marginTop: 10, marginBottom: 0}}>
                   <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     <View>
                       <Text variant="titleLarge" style={{fontWeight: '500'}}>{markers[index].title}</Text>
                       <Text variant="bodyMedium">{markers[index].address}</Text>
                     </View>
-                    <IconButton icon={() => <MaterialIcons name='gps-fixed' size={24} color={'grey'}/>} onPress={() => goToPosition(markers[index].coordinate.latitude, markers[index].coordinate.longitude)}/>
+                    <IconButton icon={() => <MaterialIcons name='gps-fixed' size={24} color={'grey'}/>}/>
                   </View>
                 </Card.Content>
               </Card>
