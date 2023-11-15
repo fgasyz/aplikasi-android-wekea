@@ -1,4 +1,4 @@
-import { StyleSheet, View, Dimensions, Image, Animated } from 'react-native'
+import { StyleSheet, View, Dimensions, Image, Animated, TouchableOpacity, Easing } from 'react-native'
 import React, { useRef, useState } from 'react'
 import MapView, { Marker } from 'react-native-maps'
 import Carousel from 'react-native-reanimated-carousel'
@@ -6,13 +6,14 @@ import { Card, IconButton, Text } from 'react-native-paper'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import store from '../images/store.png'
 
-
 export default function MapsPage() {
   const width = Dimensions.get('window').width;
 
   const mapRef = useRef(null)
   const scrollCarouselRef = useRef(null);
   const mapAnimation = new Animated.Value(0)
+  const carouselAnimation = new Animated.Value(0)
+  const carouselAnimationRef = useRef(carouselAnimation)
 
   const onPressMarker = (mapData) => {
     const markerId = mapData._targetInst.return.key;
@@ -63,6 +64,14 @@ export default function MapsPage() {
     return {scale}
   })
 
+  const onCarouselAnimation = () => {
+    Animated.timing(carouselAnimation, {
+      toValue: 1000,
+      duration: 3000,
+      useNativeDriver: true
+    }).start()
+  }
+
   return (
     <View style={StyleSheet.absoluteFillObject}>
       <MapView style={StyleSheet.absoluteFillObject} ref={mapRef} initialRegion={region} showsUserLocation={true}>
@@ -78,8 +87,19 @@ export default function MapsPage() {
         })
       }
       </MapView>
+
+      <View style={{alignSelf: 'flex-end'}}>
+        <IconButton icon={() => <MaterialIcons name='location-on' size={20}/>} style={{backgroundColor: 'white'}}
+          onPress={onCarouselAnimation}
+        />
+      </View>
+
       <View style={{position: 'absolute', top: 100, left: 50}} />
-      <View style={{alignItems: 'center', borderRadius: 15, marginTop: 10}}>
+      <Animated.View style={{alignItems: 'center', borderRadius: 15, marginTop: 10, transform: [
+        {
+          translateY: carouselAnimation
+        }
+      ]}}>
         <Carousel ref={scrollCarouselRef}
             loop
             width={width - 20}
@@ -113,7 +133,7 @@ export default function MapsPage() {
               </Card>
             )}
         />
-</View>
+</Animated.View>
     </View>
   )
 }
