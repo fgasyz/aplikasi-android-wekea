@@ -27,7 +27,10 @@ const DATA = [
 export default function PromotionComponent() {
   return (
     <View style={{flex: 1, marginBottom: 10}}>
-        <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: 'black'}}>Promo Minggu Ini</Text>
+        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: 'black'}}>Promo Minggu Ini</Text>
+            <Text style={{fontSize: 12, fontWeight: 'bold', marginBottom: 10, color: 'grey'}}>Lihat Semua</Text>
+        </View>
         <View style={styles.container}>
             {DATA.map((item, index) => (
             <Card key={index} style={styles.card}>

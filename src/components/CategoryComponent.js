@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import {IconButton} from 'react-native-paper'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const furnitures = ['living room', 'kitchen', 'bedroom', 'study room']
 
@@ -14,9 +15,10 @@ export default function CategoryComponent() {
                     padding: 10,
                     width: 100,
                     height: 40,
-                    borderRadius: 10
+                    borderRadius: 10,
+                    
                 }} activeOpacity={0.7}>
-                  <Text style={{textAlign: 'center', color: "black"}}>{item}</Text>
+                  <Text style={{textAlign: 'center', color:'grey'}}>{item}</Text>
                 </TouchableOpacity>
             ))}
         </ScrollView>

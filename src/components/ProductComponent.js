@@ -6,14 +6,17 @@ import {images} from '../images'
 export default function ProductComponent() {
   return (
     <View style={{flex: 1, marginBottom: 10}}>
-        <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: 'black'}}>Popular</Text>
+        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: 'black'}}>Popular</Text>
+            <Text style={{fontSize: 12, fontWeight: 'bold', marginBottom: 10, color: 'grey'}}>Lihat Semua</Text>
+        </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.contentContainer}>
             {images.map((item, index) => (
                 <Card style={styles.card} key={index}>
                     <Card.Cover source={{ uri: item }} style={styles.image}/>
                     <Card.Content style={{paddingTop: 5}}>
                         <Text style={{fontWeight: '500', color: 'black'}}>Sofa</Text>
-                        <Text style={{color: "black"}}>Rp. 10.000.000</Text>
+                        <Text style={{color: 'grey'}}>Rp. 10.000.000</Text>
                     </Card.Content>
                 </Card>
             ))}

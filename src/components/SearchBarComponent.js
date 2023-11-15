@@ -8,7 +8,7 @@ export default function SearchBarComponent() {
     <View style={styles.container}>
         <View style={styles.textInput}>
           <Ionicons name='search' color={'grey'} size={22}/>
-          <TextInput placeholder='masukkan kata kunci..' placeholderTextColor={'black'}/>
+          <TextInput placeholder='masukkan kata kunci..' placeholderTextColor={'grey'}/>
         </View>
           <IconButton icon='menu'/>
     </View>
@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        shadowColor: 'grey',
         justifyContent: 'space-between',
     },
     textInput: {
@@ -28,10 +27,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         flexBasis: '90%',
-        borderRadius: 10,
+        borderRadius: 50,
         columnGap: 5,
         height: 40,
         paddingHorizontal: 10,
-        borderWidth: 1,
+        backgroundColor: 'white',
+        shadowColor: 'grey',
+        elevation: 0.5
     },
 })

@@ -12,7 +12,7 @@ export default function DotComponent({currentImage}) {
                 ]} key={index}/>
             }
             return <View style={[
-                styles.dot, {backgroundColor: 'grey'}
+                styles.dot, {backgroundColor: 'white'}
             ]} key={index}/>
         })}
     </View>

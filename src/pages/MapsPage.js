@@ -14,6 +14,7 @@ export default function MapsPage() {
   const mapAnimation = new Animated.Value(0)
   const carouselAnimation = new Animated.Value(0)
   const carouselAnimationRef = useRef(carouselAnimation)
+  const [isShowCarousel, setIsShowCarousel] = useState(true)
 
   const onPressMarker = (mapData) => {
     const markerId = mapData._targetInst.return.key;
@@ -64,9 +65,17 @@ export default function MapsPage() {
     return {scale}
   })
 
+
+  const carouselInterpolate = carouselAnimationRef.current.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -1000],
+    extrapolate: 'clamp'
+  })
+
   const onCarouselAnimation = () => {
-    Animated.timing(carouselAnimation, {
-      toValue: 1000,
+    setIsShowCarousel((prev) => !prev)
+    Animated.timing(carouselAnimationRef.current, {
+      toValue: isShowCarousel ? 1 : 0,
       duration: 3000,
       useNativeDriver: true
     }).start()
@@ -97,7 +106,7 @@ export default function MapsPage() {
       <View style={{position: 'absolute', top: 100, left: 50}} />
       <Animated.View style={{alignItems: 'center', borderRadius: 15, marginTop: 10, transform: [
         {
-          translateY: carouselAnimation
+          translateY: carouselInterpolate
         }
       ]}}>
         <Carousel ref={scrollCarouselRef}
