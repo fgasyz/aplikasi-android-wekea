@@ -1,6 +1,6 @@
 import {ScrollView, StyleSheet, View, Text} from 'react-native';
 import React from 'react';
-import {Card, Button} from 'react-native-paper';
+import {Card, Button, IconButton} from 'react-native-paper';
 import productList from '../models/productList.js';
 
 export default function ProductComponent() {
@@ -19,7 +19,7 @@ export default function ProductComponent() {
             marginBottom: 10,
             color: 'black',
           }}>
-          Popular
+          Produk teratas
         </Text>
         <Text
           style={{
@@ -28,7 +28,7 @@ export default function ProductComponent() {
             marginBottom: 10,
             color: 'grey',
           }}>
-          see all
+          lihat semua
         </Text>
       </View>
       <ScrollView
@@ -39,10 +39,17 @@ export default function ProductComponent() {
           <Card mode="contained" style={styles.card} key={index}>
             <Card.Cover source={{uri: item.image}} style={styles.image} />
             <Card.Content style={{paddingTop: 5}}>
-              <Text style={{fontWeight: '500', color: 'black'}}>
-                {item.name}
-              </Text>
-              <Text style={{color: 'grey'}}>${item.price}</Text>
+              <View style={{marginVertical: 5}}>
+                <Text style={{fontWeight: '500', color: 'black'}}>
+                  {item.name}
+                </Text>
+                <Text style={{color: 'grey'}}>
+                  {new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  }).format(item.price)}
+                </Text>
+              </View>
             </Card.Content>
           </Card>
         ))}
@@ -57,9 +64,10 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: 'white',
-    width: 150,
+    width: 145,
+    height: 160,
   },
   image: {
-    height: 150,
+    height: 100,
   },
 });

@@ -26,7 +26,7 @@ const DATA = [
 
 export default function PromotionComponent() {
   return (
-    <View style={{flex: 1, marginBottom: 10}}>
+    <View style={{flex: 1, marginBottom: 80}}>
       <View
         style={{
           display: 'flex',
@@ -40,7 +40,7 @@ export default function PromotionComponent() {
             marginBottom: 10,
             color: 'black',
           }}>
-          Promo of the Week
+          Penawaran minggu ini
         </Text>
         <Text
           style={{
@@ -49,13 +49,13 @@ export default function PromotionComponent() {
             marginBottom: 10,
             color: 'grey',
           }}>
-          see all
+          lihat semua
         </Text>
       </View>
       <View style={styles.container}>
         {DATA.map((item, index) => (
           <Card key={index} style={styles.card}>
-            <Card.Cover source={item.image} style={styles.image} />
+            <Card.Cover source={item.image} style={{height: 170}} />
           </Card>
         ))}
       </View>
@@ -76,8 +76,5 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '48%',
-  },
-  image: {
-    resizeMode: 'contain',
   },
 });

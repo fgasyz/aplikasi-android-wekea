@@ -46,7 +46,10 @@ export default function CartItemComponent({
                               {item.name}
                             </Text>
                             <Text style={GlobalStyles.smallFont}>
-                              ${item.price}
+                              {new Intl.NumberFormat('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR',
+                              }).format(item.price)}
                             </Text>
                           </View>
                         </View>

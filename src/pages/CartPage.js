@@ -66,7 +66,7 @@ export default function CartPage() {
       />
       <View
         style={{
-          backgroundColor: 'goldenrod',
+          backgroundColor: 'orange',
           marginHorizontal: 10,
           padding: 10,
           display: 'flex',
@@ -81,7 +81,7 @@ export default function CartPage() {
             fontSize: 16,
             textAlign: 'center',
           }}>
-          Checkout&nbsp;$
+          Pesan sekarang:&nbsp;
         </Text>
         <Text
           style={{
@@ -90,7 +90,10 @@ export default function CartPage() {
             fontSize: 16,
             textAlign: 'center',
           }}>
-          {totalPrice}
+          {new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+          }).format(totalPrice)}
         </Text>
       </View>
     </View>
