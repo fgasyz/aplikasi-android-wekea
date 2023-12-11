@@ -20,7 +20,7 @@ export default function CartItemComponent({
         keyExtractor={item => item.id}
         renderItem={({item, index}) => {
           return (
-            <GestureHandlerRootView>
+            <GestureHandlerRootView style={{marginVertical: 5}}>
               <Animated.View exiting={SlideInLeft.duration(1000)}>
                 <Swipeable
                   renderRightActions={() => (
@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ECECED',
     padding: 10,
     borderRadius: 10,
-    marginVertical: 10,
   },
   cartItemLeft: {
     margin: 0,

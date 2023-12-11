@@ -56,7 +56,7 @@ export default function CartPage() {
           marginVertical: 10,
           marginHorizontal: 20,
         }}>
-        Cart
+        Keranjang
       </Text>
       <CartItemComponent
         datalist={productListItem}
@@ -67,12 +67,12 @@ export default function CartPage() {
       <View
         style={{
           backgroundColor: 'orange',
-          marginHorizontal: 10,
+          marginHorizontal: 20,
           padding: 10,
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
-          borderRadius: 50,
+          borderRadius: 10,
         }}>
         <Text
           style={{

@@ -96,6 +96,7 @@ export default function TransactionPage() {
                       <Image
                         source={{uri: i.image}}
                         style={styles.transactionBodyImage}
+                        a
                       />
                       <View style={styles.transactionBodyText}>
                         <Text style={styles.transactionBodyTextTitle}>
