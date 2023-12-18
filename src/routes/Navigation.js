@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MapsPage from '../pages/MapsPage';
 import CartPage from '../pages/CartPage';
 import TransactionPage from '../pages/TransactionPage';
+import ProductDetailPage from '../pages/ProductDetailPage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,6 +66,11 @@ export default function Navigation() {
         <Stack.Screen
           name="Tabs"
           component={BottomTab}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={ProductDetailPage}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

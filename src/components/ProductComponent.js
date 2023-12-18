@@ -2,8 +2,10 @@ import {ScrollView, StyleSheet, View, Text} from 'react-native';
 import React from 'react';
 import {Card, Button, IconButton} from 'react-native-paper';
 import productList from '../models/productList.js';
+import {useNavigation} from '@react-navigation/native';
 
 export default function ProductComponent() {
+  const navigation = useNavigation();
   return (
     <View style={{flex: 1, marginBottom: 10}}>
       <View
@@ -36,7 +38,15 @@ export default function ProductComponent() {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.contentContainer}>
         {productList.map((item, index) => (
-          <Card mode="contained" style={styles.card} key={index}>
+          <Card
+            mode="contained"
+            style={styles.card}
+            key={index}
+            onPress={() => {
+              navigation.navigate('Detail', {
+                id: item.id,
+              });
+            }}>
             <Card.Cover source={{uri: item.image}} style={styles.image} />
             <Card.Content style={{paddingTop: 5}}>
               <View style={{marginVertical: 5}}>
