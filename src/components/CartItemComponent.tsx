@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
 import React from 'react';
 import {IconButton, List} from 'react-native-paper';
-import GlobalStyles from '../public/GlobalStyles.js';
+import GlobalStyles from '../public/GlobalStyles';
 
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import Animated, {SlideInLeft} from 'react-native-reanimated';
@@ -11,7 +11,12 @@ export default function CartItemComponent({
   deleteItem,
   increaseQuantity,
   decreaseQuantity,
-}) {
+} : {
+  datalist : any,
+  deleteItem : any,
+  increaseQuantity : any,
+  decreaseQuantity : any,
+}) : React.JSX.Element {
   return (
     <View>
       <FlatList
@@ -32,7 +37,7 @@ export default function CartItemComponent({
                       />
                     </View>
                   )}>
-                  <List.Item
+                  <List.Item title=""
                     style={styles.cartItem}
                     left={() => {
                       return (

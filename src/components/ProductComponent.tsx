@@ -1,11 +1,11 @@
 import {ScrollView, StyleSheet, View, Text} from 'react-native';
 import React from 'react';
 import {Card, Button, IconButton} from 'react-native-paper';
-import productList from '../models/productList.js';
+import productList from '../models/productList';
 import {useNavigation} from '@react-navigation/native';
 
-export default function ProductComponent() {
-  const navigation = useNavigation();
+export default function ProductComponent() : React.JSX.Element {
+  const navigation = useNavigation() as any;
   return (
     <View style={{flex: 1, marginBottom: 10}}>
       <View

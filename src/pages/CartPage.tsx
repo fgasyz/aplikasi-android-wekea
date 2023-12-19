@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React, {useMemo, useState} from 'react';
 import productList from '../models/productList';
-import CartItemComponent from '../components/CartItemComponent.jsx';
-import GlobalStyles from '../public/GlobalStyles.js';
+import CartItemComponent from '../components/CartItemComponent';
+import GlobalStyles from '../public/GlobalStyles';
 
 export default function CartPage() {
   const [productListItem, setProductListItem] = useState(productList);
@@ -16,11 +16,11 @@ export default function CartPage() {
     [productListItem],
   );
 
-  const handleDelete = itemId => {
+  const handleDelete = (itemId: number) => {
     setProductListItem(() => productListItem.filter(item => item.id != itemId));
   };
 
-  const handleIncreaseQuantity = indexProduct => {
+  const handleIncreaseQuantity = (indexProduct: number) => {
     setProductListItem(
       productListItem.map((product, index) => {
         if (index == indexProduct) {
@@ -34,7 +34,7 @@ export default function CartPage() {
     );
   };
 
-  const handleDecreaseQuantity = indexProduct => {
+  const handleDecreaseQuantity = (indexProduct: number) => {
     setProductListItem(
       productListItem.map((product, index) => {
         if (index == indexProduct) {

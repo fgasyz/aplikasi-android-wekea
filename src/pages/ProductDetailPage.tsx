@@ -3,7 +3,7 @@ import {Dimensions, Animated, View, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import Carousel from 'react-native-reanimated-carousel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import detailProductList from '../models/detailProductList.js';
+import detailProductList from '../models/detailProductList';
 import {clamp} from 'react-native-reanimated';
 
 function BulletIndicator({data, bulletInterpolate} : {data: any, bulletInterpolate: any}): React.JSX.Element {

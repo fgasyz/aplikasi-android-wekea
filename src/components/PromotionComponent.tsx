@@ -1,28 +1,7 @@
 import {StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import React from 'react';
-import ads1 from '../images/ads1.png';
-import ads2 from '../images/ads2.png';
-import ads3 from '../images/ads3.png';
+import banner from '../models/banner';
 import {Card} from 'react-native-paper';
-
-const DATA = [
-  {
-    id: 1,
-    image: ads1,
-  },
-  {
-    id: 2,
-    image: ads2,
-  },
-  {
-    id: 3,
-    image: ads3,
-  },
-  {
-    id: 4,
-    image: ads1,
-  },
-];
 
 export default function PromotionComponent() {
   return (
@@ -53,7 +32,7 @@ export default function PromotionComponent() {
         </Text>
       </View>
       <View style={styles.container}>
-        {DATA.map((item, index) => (
+        {banner.map((item, index) => (
           <Card key={index} style={styles.card}>
             <Card.Cover source={item.image} style={{height: 170}} />
           </Card>

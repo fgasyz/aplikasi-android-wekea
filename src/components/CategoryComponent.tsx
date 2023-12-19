@@ -11,9 +11,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const furnitures = ['ruang belajar', 'ruang tamu', 'dapur', 'kamar tidur'];
 
-export default function CategoryComponent() {
+export default function CategoryComponent() : React.JSX.Element {
   return (
-    <View style={{marginTop: 10, marginBottom: 5}}>
+    <View style={{marginTop: 10, marginBottom: 10}}>
       <ScrollView
         showsHorizontalScrollIndicator={false}
         horizontal

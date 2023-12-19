@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
 import React from 'react';
 import Carousel from 'react-native-reanimated-carousel';
-import productList from '../models/productList.js';
+import productList from '../models/productList';
 
-export default function CarouselItemComponent() {
+export default function CarouselItemComponent() : React.JSX.Element {
   const width = Dimensions.get('window').width;
 
   const [currentImage, setCurrentImage] = React.useState(0);
