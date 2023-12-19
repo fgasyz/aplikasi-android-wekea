@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     fontSize: 12,
+    paddingHorizontal: 5
   },
 
   transactionBody: {

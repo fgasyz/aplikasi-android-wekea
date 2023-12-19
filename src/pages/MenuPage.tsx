@@ -82,7 +82,7 @@ const menuData = [
 
 export default function MenuPage() : React.JSX.Element {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.cardProfile}>
         <View style={styles.HStack}>
         <Avatar.Image size={60} source={{uri: 'http://picsum.photos/700'}}/>

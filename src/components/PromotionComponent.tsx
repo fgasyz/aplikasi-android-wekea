@@ -11,6 +11,7 @@ export default function PromotionComponent() {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
+          alignItems: 'center'
         }}>
         <Text
           style={{
@@ -25,8 +26,8 @@ export default function PromotionComponent() {
           style={{
             fontSize: 12,
             fontWeight: 'bold',
-            marginBottom: 10,
             color: 'grey',
+            marginBottom: 8
           }}>
           lihat semua
         </Text>
