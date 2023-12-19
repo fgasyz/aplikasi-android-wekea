@@ -59,7 +59,7 @@ const data = [
   },
 ];
 
-export default function TransactionPage() {
+export default function TransactionPage(): React.JSX.Element {
   return (
     <View style={styles.container}>
       <View style={{marginBottom: 10}}>
@@ -71,8 +71,7 @@ export default function TransactionPage() {
         style={styles.searchbar}
         placeholder="Cari pesanan anda"
         placeholderTextColor={'grey'}
-        theme={{roundness: 2}}
-      />
+        theme={{ roundness: 2 }} value={''}      />
 
       <FlatList
         data={data}
@@ -96,7 +95,7 @@ export default function TransactionPage() {
                       <Image
                         source={{uri: i.image}}
                         style={styles.transactionBodyImage}
-                        a
+                        
                       />
                       <View style={styles.transactionBodyText}>
                         <Text style={styles.transactionBodyTextTitle}>

@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React, {useMemo, useState} from 'react';
 import productList from '../models/productList';
-import CartItemComponent from '../components/CartItemComponent.js';
+import CartItemComponent from '../components/CartItemComponent.jsx';
 import GlobalStyles from '../public/GlobalStyles.js';
 
 export default function CartPage() {
