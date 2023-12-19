@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import HomePage from '../pages/HomePage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -8,17 +8,20 @@ import MapsPage from '../pages/MapsPage';
 import CartPage from '../pages/CartPage';
 import TransactionPage from '../pages/TransactionPage';
 import ProductDetailPage from '../pages/ProductDetailPage';
+import MenuPage from '../pages/MenuPage';
+import { IconButton } from 'react-native-paper';
+import GlobalStyles from '../public/GlobalStyles';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const iconsFocused = {
+const iconsFocused : any = {
   Home: 'home',
   Maps: 'map',
   Cart: 'cart',
   Transaction: 'receipt',
 };
-const iconsNotFocused = {
+const iconsNotFocused : any = {
   Home: 'home-outline',
   Maps: 'map-outline',
   Cart: 'cart-outline',
@@ -73,6 +76,13 @@ export default function Navigation() {
           component={ProductDetailPage}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="Menu"
+          component={MenuPage}
+          options= {({navigation}) => ({
+            animation: 'slide_from_right', headerLeft: () => <IconButton icon="chevron-left" size={30} onPress={() => navigation.goBack()}/>,
+            headerTitleAlign: 'center', headerTitleStyle: {...GlobalStyles.mediumFont}
+          })}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

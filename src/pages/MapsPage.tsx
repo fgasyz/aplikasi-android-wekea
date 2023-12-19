@@ -9,16 +9,16 @@ import store from '../images/store.png'
 export default function MapsPage() {
   const width = Dimensions.get('window').width;
 
-  const mapRef = useRef(null)
-  const scrollCarouselRef = useRef(null);
+  const mapRef = useRef(null) as any;
+  const scrollCarouselRef = useRef(null) as any;
   const mapAnimation = new Animated.Value(0)
   const carouselAnimation = new Animated.Value(0)
   const carouselAnimationRef = useRef(carouselAnimation)
   const [isShowCarousel, setIsShowCarousel] = useState(true)
 
-  const onPressMarker = (mapData) => {
+  const onPressMarker = (mapData: any) => {
     const markerId = mapData._targetInst.return.key;
-    scrollCarouselRef.current.scrollTo({index: +markerId, animated: true})
+    scrollCarouselRef.current?.scrollTo({index: +markerId, animated: true})
   }
 
   const region = {
@@ -55,8 +55,8 @@ export default function MapsPage() {
     },
   ];
 
-  const interpolation = markers.map((_, index) => {
-    const inputRange = [[index-1] * width, index * width, [index + 1] * width]
+  const interpolation = markers.map((_, index: number) => {
+    const inputRange  = [[index - 1] * width, index * width, [index + 1] * width]
     const scale = mapAnimation.interpolate({
       inputRange,
       outputRange: [1, 1.5, 1],
@@ -121,7 +121,7 @@ export default function MapsPage() {
             }}
             onSnapToItem={(index) => {
               const {coordinate} = markers[index]
-              mapRef.current.animateToRegion({
+              mapRef.current?.animateToRegion({
                 ...coordinate,
                 latitudeDelta: region.latitudeDelta,
                 longitudeDelta: region.longitudeDelta

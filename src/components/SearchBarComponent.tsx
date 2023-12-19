@@ -1,16 +1,17 @@
 import {StyleSheet, TextInput, View} from 'react-native';
 import React from 'react';
 import {IconButton, Searchbar} from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SearchBarComponent() {
+  const navigation = useNavigation() as any;
   return (
     <View style={styles.container}>
       <Searchbar
         style={styles.searchbar}
         placeholder="Mau cari apa?"
         placeholderTextColor={'grey'}
-        theme={{roundness: 2}}
-      />
+        theme={{ roundness: 2 }} value={''}      />
       <View
         style={{
           backgroundColor: 'white',
@@ -19,7 +20,7 @@ export default function SearchBarComponent() {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <IconButton icon="menu" />
+        <IconButton icon="menu" onPress={() => navigation.navigate("Menu")}/>
       </View>
     </View>
   );
