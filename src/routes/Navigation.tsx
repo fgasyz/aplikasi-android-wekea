@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import HomePage from '../pages/HomePage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -11,8 +11,9 @@ import ProductDetailPage from '../pages/ProductDetailPage';
 import MenuPage from '../pages/MenuPage';
 import { IconButton } from 'react-native-paper';
 import GlobalStyles from '../public/GlobalStyles';
+import ProfilDetailPage from '../pages/ProfilDetailPage';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const iconsFocused : any = {
@@ -80,9 +81,12 @@ export default function Navigation() {
           name="Menu"
           component={MenuPage}
           options= {({navigation}) => ({
-            animation: 'slide_from_right', headerLeft: () => <IconButton icon="chevron-left" size={30} onPress={() => navigation.goBack()}/>,
+            gestureEnabled: true,
+            presentation: "modal", headerLeft: () => <IconButton icon="chevron-left" size={30} onPress={() => navigation.goBack()}/>,
             headerTitleAlign: 'center', headerTitleStyle: {...GlobalStyles.mediumFont}
           })}/>
+      <Stack.Screen name="DetailProfile" component={ProfilDetailPage}
+      options={{headerTitle: "Pengguna", headerTitleAlign: "center", headerTitleStyle: {...GlobalStyles.mediumFont}}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

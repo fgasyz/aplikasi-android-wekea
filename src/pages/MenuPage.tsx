@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Avatar, List } from 'react-native-paper'
 import GlobalStyles from '../public/GlobalStyles'
@@ -80,9 +80,9 @@ const menuData = [
     },
   ];
 
-export default function MenuPage() : React.JSX.Element {
+export default function MenuPage({navigation}: {navigation: any}) : React.JSX.Element {
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.cardProfile}>
         <View style={styles.HStack}>
         <Avatar.Image size={60} source={{uri: 'http://picsum.photos/700'}}/>
@@ -91,9 +91,9 @@ export default function MenuPage() : React.JSX.Element {
         <Text style={styles.textAddress}>Bangka Belitung, Manggar</Text>
         </View>
         </View>
-        <View>
+        <TouchableOpacity onPress={() => navigation.navigate("DetailProfile")}>
             <Ionicons name='settings-outline' size={24}/>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.cardActivity}>
         {menuData.map((menu, index) => {
