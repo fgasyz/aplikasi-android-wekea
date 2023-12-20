@@ -89,9 +89,8 @@ export default function CartPage() {
             color: 'white',
             fontSize: 16,
             textAlign: 'center',
-          }}>
+          }}>Rp. 
           {new Intl.NumberFormat('id-ID', {
-            style: 'currency',
             currency: 'IDR',
           }).format(totalPrice)}
         </Text>

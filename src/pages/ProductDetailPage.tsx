@@ -1,10 +1,11 @@
 import {useState} from 'react';
-import {Dimensions, Animated, View, StyleSheet, Image} from 'react-native';
+import {Dimensions, Animated, View, StyleSheet, Image, ScrollView, Text} from 'react-native';
 import React from 'react';
 import Carousel from 'react-native-reanimated-carousel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import detailProductList from '../models/detailProductList';
-import {clamp} from 'react-native-reanimated';
+import GlobalStyles from '../public/GlobalStyles';
+import { DataTable, Divider } from 'react-native-paper';
 
 function BulletIndicator({data, bulletInterpolate} : {data: any, bulletInterpolate: any}): React.JSX.Element {
   return (
@@ -30,7 +31,7 @@ export default function ProductDetailPage({navigation} : {navigation: any}): Rea
   const bulletScrollView = new Animated.Value(0);
 
   const bulletInterpolate = detailProductList.images.map((_, index) => {
-    const opacity = bulletScrollView.interpolate({
+    const opacity: any = bulletScrollView.interpolate({
       inputRange: scrollIndex === index ? [0, 1, 2] : [0, 1, 2],
       outputRange: scrollIndex === index ? [1, 0, 1] : [0.5, 1, 0.5],
       extrapolate: 'clamp',
@@ -39,30 +40,70 @@ export default function ProductDetailPage({navigation} : {navigation: any}): Rea
   });
 
   return (
-    <View>
-      <View style={styles.backButton}>
-        <Ionicons
-          name="arrow-back"
-          size={30}
-          color="white"
-          onPress={() => navigation.goBack()}
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View>
+        <View style={styles.backButton}>
+          <Ionicons
+            name="arrow-back"
+            size={30}
+            color="white"
+            onPress={() => navigation.goBack()}
+          />
+        </View>
+        <Carousel
+          width={width}
+          height={400}
+          loop={false}
+          data={detailProductList.images}
+          onSnapToItem={index => setScrollIndex(index)}
+          renderItem={({item}) => {
+            return <Image source={{uri: item}} style={styles.imageItem} />;
+          }}
+        />
+        <BulletIndicator
+          data={detailProductList.images}
+          bulletInterpolate={bulletInterpolate}
         />
       </View>
-      <Carousel
-        width={width}
-        height={400}
-        loop={false}
-        data={detailProductList.images}
-        onSnapToItem={index => setScrollIndex(index)}
-        renderItem={({item}) => {
-          return <Image source={{uri: item}} style={styles.imageItem} />;
-        }}
-      />
-      <BulletIndicator
-        data={detailProductList.images}
-        bulletInterpolate={bulletInterpolate}
-      />
-    </View>
+      <View style={styles.productContainer}>
+        <Text style={styles.title}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+      <View style={styles.ratingContainer}>
+        <Text style={styles.averageRatingText}>3</Text>
+        <View style={styles.stars}>
+          {Array.from({length: 5}).map((_, index) =>{
+            const starColor = index < detailProductList.averageRating ? "#FFc700" : "#aaa"
+            return <Ionicons name="star" size={20} color={starColor}/>
+          })}
+        </View>
+        <Text style={styles.countReviewText}>({detailProductList.countReview} reviews)</Text>
+      </View>
+      <Divider style={{marginVertical: 10}}/>
+      <View style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+        <View>
+          <Text style={[styles.priceText, {textDecorationLine: 'line-through'}]}>Rp. {new Intl.NumberFormat("id-ID", {style: "decimal", currency: "IDR"}).format(detailProductList.price)}</Text>
+          <Text style={[styles.discountPriceText]}>Rp. {new Intl.NumberFormat("id-ID", {style: "decimal", currency: "IDR"}).format(detailProductList.price - 1000)}</Text>
+        </View>
+        <View style={styles.avatarDiscount}>
+          <Text style={styles.discountText}>-10%</Text>
+        </View>
+      </View>
+      <View style={{marginTop: 15}}>
+        <Text style={styles.descriptionText}>Spesifikasi dan Deskripsi</Text>
+        <Text style={styles.subDescriptionText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+        <DataTable>
+          <DataTable.Header>
+            <DataTable.Title textStyle={styles.dataTableTitle}>Spesifikasi :</DataTable.Title>
+          </DataTable.Header>
+          {detailProductList.specifications.map((specification) =>{
+            return <DataTable.Row>
+              <DataTable.Cell textStyle={styles.dataTableCellText}>{specification.title}</DataTable.Cell>
+              <DataTable.Cell textStyle={styles.dataTableCellText}>{specification.description}</DataTable.Cell>
+            </DataTable.Row>
+          })}
+        </DataTable>
+      </View>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -92,4 +133,68 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 2,
   },
+  productContainer: {
+    padding: 10
+  },
+  title: {
+    ...GlobalStyles.largeFont,
+    marginBottom: 5
+  },
+  averageRatingText: {
+    ...GlobalStyles.smallFont,
+    fontWeight: "700",
+    color: "grey"
+  },
+  countReviewText: {
+    ...GlobalStyles.smallFont,
+    fontWeight: "700",
+    color: "grey"
+  },
+  ratingContainer: {
+    display: "flex",
+    flexDirection: "row",
+    columnGap: 15,
+    alignItems: "center",
+  },
+  stars: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  priceText: {
+    ...GlobalStyles.mediumFont,
+    fontWeight: "500"
+  },
+  discountPriceText: {
+    ...GlobalStyles.largeFont,
+    fontWeight: "bold"
+  },
+  discountText: {
+    ...GlobalStyles.smallFont,
+    color: "#fff",
+
+  },
+  avatarDiscount: {
+    backgroundColor: "blue",
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  descriptionText: {
+    ...GlobalStyles.mediumFont,
+    fontWeight: "600"
+  },
+  subDescriptionText: {
+    ...GlobalStyles.smallFont,
+  },
+  dataTableTitle: {
+    ...GlobalStyles.smallFont,
+    fontWeight: "bold"
+  },
+  dataTableCellText: {
+    ...GlobalStyles.smallFont,
+    color: "grey"
+  }
 });

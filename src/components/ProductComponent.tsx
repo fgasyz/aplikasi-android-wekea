@@ -54,9 +54,8 @@ export default function ProductComponent() : React.JSX.Element {
                 <Text style={{fontWeight: '500', color: 'black'}}>
                   {item.name}
                 </Text>
-                <Text style={{color: 'grey'}}>
+                <Text style={{color: 'grey'}}>Rp. 
                   {new Intl.NumberFormat('id-ID', {
-                    style: 'currency',
                     currency: 'IDR',
                   }).format(item.price)}
                 </Text>

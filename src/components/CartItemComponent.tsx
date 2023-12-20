@@ -50,9 +50,8 @@ export default function CartItemComponent({
                             <Text style={GlobalStyles.regularFont}>
                               {item.name}
                             </Text>
-                            <Text style={GlobalStyles.smallFont}>
+                            <Text style={GlobalStyles.smallFont}>Rp. 
                               {new Intl.NumberFormat('id-ID', {
-                                style: 'currency',
                                 currency: 'IDR',
                               }).format(item.price)}
                             </Text>

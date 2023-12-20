@@ -106,9 +106,8 @@ export default function TransactionPage(): React.JSX.Element {
                         </Text>
                       </View>
                     </View>
-                    <Text>
+                    <Text>Rp. 
                       {new Intl.NumberFormat('id-ID', {
-                        style: 'currency',
                         currency: 'IDR',
                       }).format(i.price)}
                     </Text>
