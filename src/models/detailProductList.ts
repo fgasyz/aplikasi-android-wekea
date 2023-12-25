@@ -34,12 +34,12 @@ const detailProductList = {
   ],
   specifications: [
     {
-      title: 'Procesor',
-      description: 'Intel 7',
+      title: 'ipsum',
+      description: 'lorem ipsum dolor sit amet, consectetur adip',
     },
     {
-      title: 'Ram',
-      description: '4 Gb',
+      title: 'lorem',
+      description: 'lorem ipsum dolor sit amet',
     },
   ],
   locations: [

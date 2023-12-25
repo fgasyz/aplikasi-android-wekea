@@ -4,10 +4,13 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image
 } from 'react-native';
 import React from 'react';
 import {IconButton} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import categoryList from '../models/categoryList';
+import Colors from '../constants/Colors';
 
 const furnitures = ['ruang belajar', 'ruang tamu', 'dapur', 'kamar tidur'];
 
@@ -18,18 +21,21 @@ export default function CategoryComponent() : React.JSX.Element {
         showsHorizontalScrollIndicator={false}
         horizontal
         contentContainerStyle={{columnGap: 10}}>
-        {furnitures.map((item, index) => (
+        {categoryList.map((item, index) => (
           <TouchableOpacity
             key={index}
             style={{
               backgroundColor: 'white',
+              display: 'flex',
+              alignItems: 'center',
+              rowGap: 5,
               padding: 10,
               width: 110,
-              height: 40,
               borderRadius: 10,
             }}
             activeOpacity={0.7}>
-            <Text style={{textAlign: 'center', color: 'grey'}}>{item}</Text>
+            {/* <Image style={{height: 40, width: 40}} source={item.image}/> */}
+            <Text style={{textAlign: 'center', color: Colors.red}}>{item.name}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>

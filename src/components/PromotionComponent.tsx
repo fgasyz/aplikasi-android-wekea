@@ -1,11 +1,12 @@
-import {StyleSheet, Text, View, Image, FlatList} from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import React from 'react';
-import banner from '../models/banner';
+import advertisementList from '../models/advertisementList';
 import {Card} from 'react-native-paper';
+import Colors from '../constants/Colors';
 
 export default function PromotionComponent() {
   return (
-    <View style={{flex: 1, marginBottom: 80}}>
+    <View style={{flex: 1, marginBottom: 10}}>
       <View
         style={{
           display: 'flex',
@@ -18,7 +19,7 @@ export default function PromotionComponent() {
             fontSize: 18,
             fontWeight: 'bold',
             marginBottom: 10,
-            color: 'black',
+            color: Colors.marronRed
           }}>
           Penawaran minggu ini
         </Text>
@@ -26,19 +27,19 @@ export default function PromotionComponent() {
           style={{
             fontSize: 12,
             fontWeight: 'bold',
-            color: 'grey',
-            marginBottom: 8
+            marginBottom: 8,
+            color: Colors.marronRed
           }}>
           lihat semua
         </Text>
       </View>
-      <View style={styles.container}>
-        {banner.map((item, index) => (
-          <Card key={index} style={styles.card}>
-            <Card.Cover source={item.image} style={{height: 170}} />
-          </Card>
+      <ScrollView horizontal={true} contentContainerStyle={{columnGap: 10}} showsHorizontalScrollIndicator={false}>
+        {advertisementList.map((item, index) => (
+          <View key={index} style={styles.card}>
+            <Image source={item.image} style={{height: 130, width: 200, borderRadius: 10}} resizeMode="cover"/>
+          </View>
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   card: {
-    width: '48%',
+    flex: 1,
+    borderRadius: 10
   },
 });

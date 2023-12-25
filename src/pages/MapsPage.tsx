@@ -5,6 +5,8 @@ import Carousel from 'react-native-reanimated-carousel'
 import { Card, IconButton, Text } from 'react-native-paper'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import store from '../images/store.png'
+import Colors from '../constants/Colors'
+import GlobalStyles from '../public/GlobalStyles'
 
 export default function MapsPage() {
   const width = Dimensions.get('window').width;
@@ -98,7 +100,7 @@ export default function MapsPage() {
       </MapView>
 
       <View style={{alignSelf: 'flex-end'}}>
-        <IconButton icon={() => <MaterialIcons name='location-on' size={20}/>} style={{backgroundColor: 'white'}}
+        <IconButton icon={() => <MaterialIcons color={Colors.red} name='location-on' size={20}/>} style={{backgroundColor: 'white'}}
           onPress={onCarouselAnimation}
         />
       </View>
@@ -133,10 +135,10 @@ export default function MapsPage() {
                 <Card.Content style={{marginTop: 10, marginBottom: 0}}>
                   <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     <View>
-                      <Text variant="titleLarge" style={{fontWeight: '500'}}>{markers[index].title}</Text>
-                      <Text variant="bodyMedium">{markers[index].address}</Text>
+                      <Text variant="titleLarge" style={{ color: Colors.red, ...GlobalStyles.regularFont}}>{markers[index].title}</Text>
+                      <Text variant="bodyMedium" style={{...GlobalStyles.smallFont}}>{markers[index].address}</Text>
                     </View>
-                    <IconButton icon={() => <MaterialIcons name='gps-fixed' size={24} color={'grey'}/>}/>
+                    <IconButton icon={() => <MaterialIcons name='gps-fixed' size={24} color={Colors.orange}/>}/>
                   </View>
                 </Card.Content>
               </Card>

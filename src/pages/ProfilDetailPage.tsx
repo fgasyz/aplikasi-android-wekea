@@ -3,6 +3,7 @@ import React from 'react';
 import {Avatar, Divider, IconButton} from 'react-native-paper';
 import GlobalStyles from '../public/GlobalStyles';
 import { ScrollView } from 'react-native-gesture-handler';
+import Colors from '../constants/Colors';
 
 const dimension = Dimensions.get("screen");
 
@@ -10,7 +11,7 @@ export default function ProfilDetailPage() {
   return (
         <View style={styles.container}>
             <View>
-                <IconButton icon="pencil" style={{position: 'absolute', right: 0}} />
+                <IconButton iconColor={Colors.red} icon="pencil" style={{position: 'absolute', right: 0}} />
                 <Avatar.Image
                     size={80}
                     source={{uri: 'http://picsum.photos/700'}}
@@ -84,16 +85,19 @@ const styles = StyleSheet.create({
     },
     titleText: {
         ...GlobalStyles.mediumFont,
-        fontWeight: "bold", 
+        fontWeight: "bold",
+        color: 'black' 
     },
     subTitleText: {
         ...GlobalStyles.regularFont,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: 'black',
     },
     descriptionText: {
         ...GlobalStyles.smallFont,
         fontWeight: "400",
-        flexShrink: 1
+        flexShrink: 1,
+        color: 'black'
     },
     userDescriptionContainer: {
         display: "flex",

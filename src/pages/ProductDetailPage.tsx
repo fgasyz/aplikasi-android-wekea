@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import detailProductList from '../models/detailProductList';
 import GlobalStyles from '../public/GlobalStyles';
 import { DataTable, Divider } from 'react-native-paper';
+import Colors from '../constants/Colors';
 
 function BulletIndicator({data, bulletInterpolate} : {data: any, bulletInterpolate: any}): React.JSX.Element {
   return (
@@ -46,7 +47,7 @@ export default function ProductDetailPage({navigation} : {navigation: any}): Rea
           <Ionicons
             name="arrow-back"
             size={30}
-            color="white"
+            color={Colors.red}
             onPress={() => navigation.goBack()}
           />
         </View>
@@ -71,8 +72,8 @@ export default function ProductDetailPage({navigation} : {navigation: any}): Rea
         <Text style={styles.averageRatingText}>3</Text>
         <View style={styles.stars}>
           {Array.from({length: 5}).map((_, index) =>{
-            const starColor = index < detailProductList.averageRating ? "#FFc700" : "#aaa"
-            return <Ionicons name="star" size={20} color={starColor}/>
+            const starColor = index < detailProductList.averageRating ? Colors.yellow : "#aaa"
+            return <Ionicons key={index} name="star" size={20} color={starColor}/>
           })}
         </View>
         <Text style={styles.countReviewText}>({detailProductList.countReview} reviews)</Text>
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 50,
-    backgroundColor: '#eee',
+    backgroundColor: Colors.red,
     marginHorizontal: 5,
   },
   imageItem: {
@@ -138,17 +139,18 @@ const styles = StyleSheet.create({
   },
   title: {
     ...GlobalStyles.largeFont,
-    marginBottom: 5
+    marginBottom: 5,
+    color: Colors.red
   },
   averageRatingText: {
     ...GlobalStyles.smallFont,
     fontWeight: "700",
-    color: "grey"
+    color: 'black'
   },
   countReviewText: {
     ...GlobalStyles.smallFont,
     fontWeight: "700",
-    color: "grey"
+    color: 'black'
   },
   ratingContainer: {
     display: "flex",
@@ -162,11 +164,13 @@ const styles = StyleSheet.create({
   },
   priceText: {
     ...GlobalStyles.mediumFont,
-    fontWeight: "500"
+    fontWeight: "500",
+    color: 'black'
   },
   discountPriceText: {
     ...GlobalStyles.largeFont,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: Colors.orange
   },
   discountText: {
     ...GlobalStyles.smallFont,
@@ -174,7 +178,7 @@ const styles = StyleSheet.create({
 
   },
   avatarDiscount: {
-    backgroundColor: "blue",
+    backgroundColor: Colors.orange,
     height: 50,
     width: 50,
     borderRadius: 50,
@@ -184,17 +188,20 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     ...GlobalStyles.mediumFont,
-    fontWeight: "600"
+    fontWeight: "600",
+    color: Colors.red
   },
   subDescriptionText: {
     ...GlobalStyles.smallFont,
+    color: 'black'
   },
   dataTableTitle: {
     ...GlobalStyles.smallFont,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: Colors.red
   },
   dataTableCellText: {
     ...GlobalStyles.smallFont,
-    color: "grey"
+    color: 'black'
   }
 });

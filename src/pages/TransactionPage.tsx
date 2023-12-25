@@ -1,85 +1,101 @@
 import {StyleSheet, Text, View, FlatList, Image, Pressable} from 'react-native';
-import React from 'react';
-import {Button, Divider, Searchbar} from 'react-native-paper';
+import React, {useState, useRef} from 'react';
+import {
+  Button,
+  Divider,
+  Searchbar,
+} from 'react-native-paper';
 import GlobalStyles from '../public/GlobalStyles';
+import transactionList from '../models/transactionList';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import Colors from '../constants/Colors';
+import * as Animatable from 'react-native-animatable';
 
-const data = [
-  {
-    id: 1,
-    date: '12/12/2021',
-    status: 'Sedang dikirim',
-    items: [
-      {
-        id: 1,
-        name: 'Produk 1',
-        qty: 1,
-        price: 1000000,
-        image:
-          'https://plus.unsplash.com/premium_photo-1678402545077-7a9ec2b5e5b8?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnVybml0dXJlfGVufDB8fDB8fHww',
-      },
-    ],
-  },
-  {
-    id: 2,
-    date: '12/12/2021',
-    status: 'Sedang dikirim',
-    items: [
-      {
-        id: 1,
-        name: 'Produk 2',
-        qty: 1,
-        price: 2000000,
-        image:
-          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZnVybml0dXJlfGVufDB8fDB8fHww',
-      },
-    ],
-  },
-  {
-    id: 3,
-    date: '12/12/2021',
-    status: 'Sedang dikirim',
-    items: [
-      {
-        id: 1,
-        name: 'Produk 3',
-        qty: 1,
-        price: 4000000,
-        image:
-          'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZnVybml0dXJlfGVufDB8fDB8fHww',
-      },
-      {
-        id: 2,
-        name: 'Produk 4',
-        qty: 1,
-        price: 5000000,
-        image:
-          'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D',
-      },
-    ],
-  },
-];
+export default function TransactionPage() {
+  const transactionStatus = [
+    {
+      value: 'semua',
+      label: 'semua',
+    },
+    {
+      value: 'dikemas',
+      label: 'dikemas',
+    },
+    {
+      value: 'dikirim',
+      label: 'dikirim',
+    },
+    {
+      value: 'selesai',
+      label: 'selesai',
+    },
+  ];
 
-export default function TransactionPage(): React.JSX.Element {
+  const [filterData, setFilterData] = useState(transactionList);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const onChangeSearch = query => setSearchQuery(query);
+  const activeButton = useRef('semua');
+
+  const transactionAnimate = useRef();
+
+  function filterTransactionByStatus(status: string) {
+    let result = transactionList.filter(item => item.status == status);
+    if (result.length == 0) {
+      setFilterData(transactionList);
+      activeButton.current = 'semua';
+    } else {
+      setFilterData(result);
+    }
+    activeButton.current = status;
+  }
+
   return (
     <View style={styles.container}>
-      <View style={{marginBottom: 10}}>
-        <Text style={[GlobalStyles.largeFont, {fontWeight: 'bold'}]}>
-          Status Pesanan
-        </Text>
-      </View>
+
       <Searchbar
         style={styles.searchbar}
-        placeholder="Cari pesanan anda"
+        iconColor={Colors.marronRed}
+        placeholder="Mau cari apa?"
         placeholderTextColor={'grey'}
-        theme={{ roundness: 2 }} value={''}      />
+        cursorColor={Colors.marronRed}
+        theme={{roundness: 2}}
+        value={searchQuery}
+        onChangeText={onChangeSearch}
+      />
+
+      <View style={styles.buttonTabWrapper}>
+        {transactionStatus.map((item, index) => {
+          return (
+            <TouchableOpacity
+              key={index}
+              onPress={() => filterTransactionByStatus(item.value)}>
+              <Text
+                ref={activeButton}
+                style={{
+                  fontWeight:
+                    item.value == activeButton.current ? 'bold' : 'normal',
+                  color:
+                    item.value == activeButton.current ? Colors.red : 'black',
+                }}>
+                {item.value}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
 
       <FlatList
-        data={data}
-        style={{marginBottom: 50, marginTop: 10}}
+        data={filterData}
+        style={{marginBottom: 50}}
         showsVerticalScrollIndicator={false}
-        renderItem={({item}) => {
+        renderItem={({item, index}: {item: object; index: number}) => {
           return (
-            <View style={styles.transactionContainer}>
+            <Animatable.View
+              key={item.id}
+              ref={transactionAnimate.current}
+              delay={(filterData[index].id - 1) * 1000}
+              animation={'fadeInUp'}
+              style={styles.transactionContainer}>
               <View style={styles.transactionHeader}>
                 <Text style={styles.transactionDate}>{item.date}</Text>
                 <View style={styles.transactionStatus}>
@@ -88,43 +104,73 @@ export default function TransactionPage(): React.JSX.Element {
                   </Text>
                 </View>
               </View>
-              {item?.items?.map(i => {
-                return (
-                  <View style={styles.transactionBody} key={i.id}>
-                    <View style={styles.transactionBodyLeft}>
-                      <Image
-                        source={{uri: i.image}}
-                        style={styles.transactionBodyImage}
-                        
-                      />
-                      <View style={styles.transactionBodyText}>
-                        <Text style={styles.transactionBodyTextTitle}>
-                          {i.name}
-                        </Text>
-                        <Text style={styles.transactionBodyTextDesc}>
-                          jumlah: {i.qty}
-                        </Text>
+              {item?.items?.map(
+                (i: {
+                  id: React.Key | null | undefined;
+                  image: any;
+                  name:
+                    | string
+                    | number
+                    | boolean
+                    | React.ReactElement<
+                        any,
+                        string | React.JSXElementConstructor<any>
+                      >
+                    | Iterable<React.ReactNode>
+                    | React.ReactPortal
+                    | null
+                    | undefined;
+                  qty:
+                    | string
+                    | number
+                    | boolean
+                    | React.ReactElement<
+                        any,
+                        string | React.JSXElementConstructor<any>
+                      >
+                    | Iterable<React.ReactNode>
+                    | React.ReactPortal
+                    | null
+                    | undefined;
+                  price: number | bigint;
+                }) => {
+                  return (
+                    <View style={styles.transactionBody} key={i.id}>
+                      <View style={styles.transactionBodyLeft}>
+                        <Image
+                          source={{uri: i.image}}
+                          style={styles.transactionBodyImage}
+                        />
+                        <View style={styles.transactionBodyText}>
+                          <Text style={styles.transactionBodyTextTitle}>
+                            {i.name}
+                          </Text>
+                          <Text style={styles.transactionBodyTextDesc}>
+                            jumlah: {i.qty}
+                          </Text>
+                        </View>
                       </View>
+                      <Text style={{color: 'black'}}>
+                        Rp.
+                        {new Intl.NumberFormat('id-ID', {
+                          currency: 'IDR',
+                        }).format(i.price)}
+                      </Text>
                     </View>
-                    <Text>Rp. 
-                      {new Intl.NumberFormat('id-ID', {
-                        currency: 'IDR',
-                      }).format(i.price)}
-                    </Text>
-                  </View>
-                );
-              })}
+                  );
+                },
+              )}
               <Divider />
               <View style={styles.transactionFooter}>
                 <Pressable>
                   <View style={styles.transactionFooterButton}>
-                    <Button icon={'truck'} textColor={'green'}>
+                    <Button icon={'truck'} textColor={Colors.orange}>
                       Lacak
                     </Button>
                   </View>
                 </Pressable>
               </View>
-            </View>
+            </Animatable.View>
           );
         }}
       />
@@ -135,8 +181,7 @@ export default function TransactionPage(): React.JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 20,
-    marginVertical: 20,
+    padding: 10
   },
   searchbar: {
     display: 'flex',
@@ -149,7 +194,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 10,
     borderRadius: 10,
-    marginVertical: 10,
+    marginVertical: 5,
     gap: 16,
   },
 
@@ -163,6 +208,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 12,
     marginRight: 10,
+    color: 'black',
   },
 
   transactionStatus: {
@@ -170,14 +216,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
     borderRadius: 5,
 
-    backgroundColor: 'green',
+    backgroundColor: Colors.yellow,
   },
 
   transactionStatusText: {
-    fontWeight: 'bold',
-    color: 'white',
+    color: 'black',
     fontSize: 12,
-    paddingHorizontal: 5
+    paddingHorizontal: 5,
   },
 
   transactionBody: {
@@ -200,14 +245,17 @@ const styles = StyleSheet.create({
   transactionBodyText: {
     marginLeft: 10,
     gap: 5,
+    color: 'black',
   },
 
   transactionBodyTextTitle: {
     fontWeight: 'bold',
+    color: 'black',
   },
 
   transactionBodyTextDesc: {
     fontWeight: '400',
+    color: 'black',
   },
 
   transactionFooter: {
@@ -219,6 +267,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: 'green',
+    borderColor: Colors.orange,
+  },
+  segmentedButtonsStyle: {
+    marginVertical: 10,
+    borderWidth: 0,
+  },
+  buttonTabWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 15,
+    marginVertical: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
   },
 });

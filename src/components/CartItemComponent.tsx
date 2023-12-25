@@ -2,6 +2,7 @@ import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
 import React from 'react';
 import {IconButton, List} from 'react-native-paper';
 import GlobalStyles from '../public/GlobalStyles';
+import Colors from '../constants/Colors';
 
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import Animated, {SlideInLeft} from 'react-native-reanimated';
@@ -25,12 +26,13 @@ export default function CartItemComponent({
         keyExtractor={item => item.id}
         renderItem={({item, index}) => {
           return (
-            <GestureHandlerRootView style={{marginVertical: 5}}>
+            <GestureHandlerRootView>
               <Animated.View exiting={SlideInLeft.duration(1000)}>
                 <Swipeable
                   renderRightActions={() => (
                     <View style={styles.cartTrashButton}>
                       <IconButton
+                      iconColor={"#fff"}
                         icon="delete"
                         size={24}
                         onPress={() => deleteItem(item.id)}
@@ -47,10 +49,10 @@ export default function CartItemComponent({
                             style={styles.cartItemImg}
                           />
                           <View>
-                            <Text style={GlobalStyles.regularFont}>
+                            <Text style={[GlobalStyles.regularFont, {color: Colors.red}]}>
                               {item.name}
                             </Text>
-                            <Text style={GlobalStyles.smallFont}>Rp. 
+                            <Text style={[GlobalStyles.smallFont, {color: "black"}]}>Rp. 
                               {new Intl.NumberFormat('id-ID', {
                                 currency: 'IDR',
                               }).format(item.price)}
@@ -67,7 +69,7 @@ export default function CartItemComponent({
                             size={14}
                             onPress={() => increaseQuantity(index)}
                           />
-                          <Text>{item.quantity}</Text>
+                          <Text style={{color: 'black'}}>{item.quantity}</Text>
                           <IconButton
                             disabled={datalist[index].quantity === 1}
                             icon="minus"
@@ -88,13 +90,10 @@ export default function CartItemComponent({
 
 const styles = StyleSheet.create({
   cartItem: {
-    marginHorizontal: 20,
-    backgroundColor: '#ECECED',
-    padding: 10,
-    borderRadius: 10,
+    backgroundColor: "#fff",
+    paddingHorizontal: 10
   },
   cartItemLeft: {
-    margin: 0,
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
@@ -108,7 +107,6 @@ const styles = StyleSheet.create({
 
   cartItemRight: {
     alignItems: 'center',
-    margin: 0,
     flexDirection: 'row',
   },
 
@@ -124,11 +122,10 @@ const styles = StyleSheet.create({
   },
 
   cartTrashButton: {
-    marginVertical: 10,
-    marginHorizontal: 20,
-    borderRadius: 10,
-    backgroundColor: '#ECECED',
+    backgroundColor: Colors.red,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 15
   },
 });

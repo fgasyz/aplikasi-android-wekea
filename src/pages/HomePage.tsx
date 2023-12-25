@@ -14,8 +14,8 @@ export default function HomePage() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <CarouselItemComponent />
         <CategoryComponent />
-        <ProductComponent />
         <PromotionComponent />
+        <ProductComponent />
       </ScrollView>
     </View>
   );

@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
 import React from 'react';
 import Carousel from 'react-native-reanimated-carousel';
-import productList from '../models/productList';
+import bannerList from "../models/bannerList";
 
 export default function CarouselItemComponent() : React.JSX.Element {
   const width = Dimensions.get('window').width;
@@ -16,7 +16,7 @@ export default function CarouselItemComponent() : React.JSX.Element {
         width={width - 20}
         height={width / 2}
         autoPlay={true}
-        data={productList}
+        data={bannerList}
         scrollAnimationDuration={1000}
         onSnapToItem={index => setCurrentImage(index)}
         renderItem={({index}) => (
@@ -26,7 +26,7 @@ export default function CarouselItemComponent() : React.JSX.Element {
               height: '100%',
               borderRadius: 15,
             }}
-            source={{uri: productList[index].image}}></Image>
+            source={{uri: bannerList[index].image}}></Image>
         )}
       />
     </View>

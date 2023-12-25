@@ -1,8 +1,13 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import productList from '../models/productList';
 import CartItemComponent from '../components/CartItemComponent';
 import GlobalStyles from '../public/GlobalStyles';
+import Colors from '../constants/Colors';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Dimensions } from 'react-native';
+
+const dimension = Dimensions.get("screen")
 
 export default function CartPage() {
   const [productListItem, setProductListItem] = useState(productList);
@@ -50,50 +55,23 @@ export default function CartPage() {
 
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          ...GlobalStyles.largeFont,
-          marginVertical: 10,
-          marginHorizontal: 20,
-        }}>
-        Keranjang
-      </Text>
       <CartItemComponent
         datalist={productListItem}
         deleteItem={handleDelete}
         increaseQuantity={handleIncreaseQuantity}
         decreaseQuantity={handleDecreaseQuantity}
       />
-      <View
-        style={{
-          backgroundColor: 'orange',
-          marginHorizontal: 20,
-          padding: 10,
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          borderRadius: 10,
-        }}>
-        <Text
-          style={{
-            fontWeight: '500',
-            color: 'white',
-            fontSize: 16,
-            textAlign: 'center',
-          }}>
-          Pesan sekarang:&nbsp;
-        </Text>
-        <Text
-          style={{
-            fontWeight: '500',
-            color: 'white',
-            fontSize: 16,
-            textAlign: 'center',
-          }}>Rp. 
+      <View style={styles.checkOutWrapper}>
+        <View style={styles.itemInfoWrapper}>
+        <Text style={{...GlobalStyles.regularFont, color: "black"}}>Total harga : Rp. 
           {new Intl.NumberFormat('id-ID', {
             currency: 'IDR',
-          }).format(totalPrice)}
-        </Text>
+          }).format(totalPrice)}</Text>
+        <Text style={{...GlobalStyles.regularFont, color: "black"}}>{productListItem.length} item</Text>
+        </View>
+        <TouchableOpacity activeOpacity={0.7} style={styles.checkOutButton}>
+          <Text style={styles.checkOutButtonText}>Pesan Sekarang</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -102,12 +80,34 @@ export default function CartPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    rowGap: 5,
-    padding: 10,
-    flexDirection: 'column',
-    marginBottom: 170,
   },
   contentContainer: {
     rowGap: 10,
   },
+  checkOutWrapper: {
+    width: dimension.width,
+    padding: 20,
+    position: "absolute",
+    bottom: 60,
+    flex: 1,
+    flexDirection: "column",
+    rowGap: 10,
+    backgroundColor: "#fff"
+  },
+  itemInfoWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  checkOutButton: {
+    backgroundColor: Colors.orange,
+    padding: 15,
+    borderRadius: 10
+  },
+  checkOutButtonText: {
+    color: "#fff",
+    textAlign: "center",
+    ...GlobalStyles.regularFont
+  }
+
 });

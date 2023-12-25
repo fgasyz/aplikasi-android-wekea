@@ -92,7 +92,7 @@ export default function MenuPage({navigation}: {navigation: any}) : React.JSX.El
         </View>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate("DetailProfile")}>
-            <Ionicons name='settings-outline' size={24}/>
+            <Ionicons name='settings-outline' size={24} color="black"/>
         </TouchableOpacity>
       </View>
       <View style={styles.cardActivity}>
@@ -101,7 +101,7 @@ export default function MenuPage({navigation}: {navigation: any}) : React.JSX.El
                 <Text style={styles.activityTitle}>{menu.title}</Text>
                 {menu.menuItems.map((item, index) => {
                     return (<View style={styles.HStack} key={index}>
-                        <Ionicons name={item.icon} size={23}/>
+                        <Ionicons name={item.icon} size={23} color="black"/>
                         <Text style={styles.activitySubTitle}>{item.title}</Text>
                     </View>)
                 })}
@@ -149,19 +149,23 @@ const styles = StyleSheet.create({
     },
     textUsername: {
         ...GlobalStyles.mediumFont,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'black'
     },
     textAddress: {
         ...GlobalStyles.smallFont,
-        fontWeight: '400'
+        fontWeight: '400',
+        color: 'black'
     },
     activityTitle: {
         ...GlobalStyles.mediumFont,
         fontWeight: 'bold',
-        marginTop: 25
+        marginTop: 25,
+        color: 'black'
     },
     activitySubTitle: {
         ...GlobalStyles.regularFont,
-        fontWeight: '400'
+        fontWeight: '400',
+        color: 'black'
     }
 })

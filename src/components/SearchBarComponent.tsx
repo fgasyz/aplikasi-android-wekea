@@ -2,16 +2,22 @@ import {StyleSheet, TextInput, View} from 'react-native';
 import React from 'react';
 import {IconButton, Searchbar} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import Colors from '../constants/Colors';
 
 export default function SearchBarComponent() {
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const onChangeSearch = query => setSearchQuery(query);
   const navigation = useNavigation() as any;
   return (
     <View style={styles.container}>
       <Searchbar
         style={styles.searchbar}
+        iconColor={Colors.marronRed}
         placeholder="Mau cari apa?"
         placeholderTextColor={'grey'}
-        theme={{ roundness: 2 }} value={''}      />
+        cursorColor={Colors.marronRed}
+      
+        theme={{ roundness: 2 }} value={searchQuery} onChangeText={onChangeSearch}     />
       <View
         style={{
           backgroundColor: 'white',
@@ -20,7 +26,7 @@ export default function SearchBarComponent() {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <IconButton icon="menu" onPress={() => navigation.navigate("Menu")}/>
+        <IconButton icon="menu" iconColor={Colors.marronRed} onPress={() => navigation.navigate("Menu")}/>
       </View>
     </View>
   );
