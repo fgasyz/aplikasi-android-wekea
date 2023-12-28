@@ -67,7 +67,7 @@ export default function ProductDetailPage({navigation} : {navigation: any}): Rea
         />
       </View>
       <View style={styles.productContainer}>
-        <Text style={styles.title}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+        <Text style={styles.title}>Lorem ipsum dolor sit amet.</Text>
       <View style={styles.ratingContainer}>
         <Text style={styles.averageRatingText}>3</Text>
         <View style={styles.stars}>
@@ -188,7 +188,6 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     ...GlobalStyles.mediumFont,
-    fontWeight: "600",
     color: "black"
   },
   subDescriptionText: {
@@ -197,8 +196,7 @@ const styles = StyleSheet.create({
   },
   dataTableTitle: {
     ...GlobalStyles.smallFont,
-    fontWeight: "bold",
-    color: Colors.red
+    color: "black"
   },
   dataTableCellText: {
     ...GlobalStyles.smallFont,
