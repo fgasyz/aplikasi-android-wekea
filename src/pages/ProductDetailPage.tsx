@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   descriptionText: {
     ...GlobalStyles.mediumFont,
     fontWeight: "600",
-    color: Colors.red
+    color: "black"
   },
   subDescriptionText: {
     ...GlobalStyles.smallFont,
