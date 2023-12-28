@@ -68,7 +68,7 @@ export default function AllProductPage({navigation}) {
                   <Text
                     style={{
                       color: Colors.red,
-                      ...GlobalStyles.regularFont,
+                      ...GlobalStyles.smallFont,
                       fontWeight: '500',
                     }}>
                     {item.name}
@@ -92,7 +92,7 @@ export default function AllProductPage({navigation}) {
                     borderBottomRightRadius: 10,
                   }}>
                   <IconButton
-                    size={19}
+                    size={18}
                     icon={'cart-variant'}
                     iconColor={'white'}
                   />
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     width: '49%',
   },
   image: {
-    borderRadius: 10,
+    borderRadius: 5,
     height: 100,
   },
   searchBarWrapper: {

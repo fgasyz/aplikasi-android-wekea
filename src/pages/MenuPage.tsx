@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
         color: 'black'
     },
     activitySubTitle: {
-        ...GlobalStyles.regularFont,
+        ...GlobalStyles.smallFont,
         fontWeight: '400',
         color: 'black'
     }

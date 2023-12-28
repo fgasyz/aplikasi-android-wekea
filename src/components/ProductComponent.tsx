@@ -22,19 +22,17 @@ export default function ProductComponent() : React.JSX.Element {
         }}>
         <Text
           style={{
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...GlobalStyles.regularFont,
             marginBottom: 10,
-            color: Colors.marronRed
+            color: "black"
           }}>
           Produk teratas
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate("AllProduct")}>
           <Text
             style={{
-              fontSize: 12,
-              fontWeight: 'bold',
-              color: Colors.marronRed,
+              ...GlobalStyles.smallFont,
+              color: "black",
               marginBottom: 8
             }}>
             lihat semua
@@ -54,11 +52,11 @@ export default function ProductComponent() : React.JSX.Element {
             }}>
               <View style={{position: "relative"}}>
                 <Image source={{uri: item.image}} style={styles.image} />
-                <IconButton iconColor={Colors.red} icon={"heart-outline"} style={{position: "absolute", top: 0, right: 0, backgroundColor: "white"}}/>
+                <IconButton iconColor={Colors.red} size={20} icon={"heart-outline"} style={{position: "absolute", top: 0, right: 0, backgroundColor: "white"}}/>
               </View>
             <View style={{paddingTop: 5, display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
               <View style={{marginVertical: 5}}>
-                <Text style={{color: Colors.red, ...GlobalStyles.regularFont, fontWeight: "500"}}>
+                <Text style={{color: Colors.red, ...GlobalStyles.smallFont, fontWeight: "500"}}>
                   {item.name}
                 </Text>
                   <Text style={{color: 'black', ...GlobalStyles.smallFont, fontWeight: "400"}}>Rp. 
@@ -68,7 +66,7 @@ export default function ProductComponent() : React.JSX.Element {
                   </Text>
               </View>
               <View style={{backgroundColor: Colors.red, borderTopLeftRadius: 10, borderBottomRightRadius: 10}}>
-                <IconButton size={20} icon={"cart-variant"} iconColor={"white"}/>
+                <IconButton size={18} icon={"cart-variant"} iconColor={"white"}/>
               </View>
             </View>
           </TouchableOpacity>
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
     width: 220,
   },
   image: {
-    borderRadius: 10,
+    borderRadius: 5,
     height: 100,
   },
 });

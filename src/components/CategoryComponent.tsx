@@ -11,6 +11,7 @@ import {IconButton} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import categoryList from '../models/categoryList';
 import Colors from '../constants/Colors';
+import GlobalStyles from '../public/GlobalStyles';
 
 const furnitures = ['ruang belajar', 'ruang tamu', 'dapur', 'kamar tidur'];
 
@@ -35,7 +36,7 @@ export default function CategoryComponent() : React.JSX.Element {
             }}
             activeOpacity={0.7}>
             {/* <Image style={{height: 40, width: 40}} source={item.image}/> */}
-            <Text style={{textAlign: 'center', color: Colors.red}}>{item.name}</Text>
+            <Text style={{textAlign: 'center', color: "black", ...GlobalStyles.smallFont}}>{item.name}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>

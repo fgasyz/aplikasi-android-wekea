@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import React from 'react';
 import advertisementList from '../models/advertisementList';
+import GlobalStyles from '../public/GlobalStyles';
 import {Card} from 'react-native-paper';
 import Colors from '../constants/Colors';
 
@@ -16,19 +17,17 @@ export default function PromotionComponent() {
         }}>
         <Text
           style={{
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...GlobalStyles.regularFont,
             marginBottom: 10,
-            color: Colors.marronRed
+            color: "black"
           }}>
           Penawaran minggu ini
         </Text>
         <Text
           style={{
-            fontSize: 12,
-            fontWeight: 'bold',
+            ...GlobalStyles.smallFont,
             marginBottom: 8,
-            color: Colors.marronRed
+            color: "black"
           }}>
           lihat semua
         </Text>

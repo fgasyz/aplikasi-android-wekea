@@ -249,8 +249,8 @@ const styles = StyleSheet.create({
   },
 
   transactionBodyTextTitle: {
-    fontWeight: 'bold',
-    color: 'black',
+    ...GlobalStyles.smallFont,
+    color: Colors.red,
   },
 
   transactionBodyTextDesc: {

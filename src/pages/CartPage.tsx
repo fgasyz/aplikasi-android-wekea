@@ -63,11 +63,11 @@ export default function CartPage() {
       />
       <View style={styles.checkOutWrapper}>
         <View style={styles.itemInfoWrapper}>
-        <Text style={{...GlobalStyles.regularFont, color: "black"}}>Total harga : Rp. 
+        <Text style={{...GlobalStyles.smallFont, color: "black"}}>Total harga : Rp. 
           {new Intl.NumberFormat('id-ID', {
             currency: 'IDR',
           }).format(totalPrice)}</Text>
-        <Text style={{...GlobalStyles.regularFont, color: "black"}}>{productListItem.length} item</Text>
+        <Text style={{...GlobalStyles.smallFont, color: "black"}}>{productListItem.length} item</Text>
         </View>
         <TouchableOpacity activeOpacity={0.7} style={styles.checkOutButton}>
           <Text style={styles.checkOutButtonText}>Pesan Sekarang</Text>
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   checkOutButton: {
     backgroundColor: Colors.orange,
-    padding: 15,
+    padding: 10,
     borderRadius: 10
   },
   checkOutButtonText: {
