@@ -1,5 +1,7 @@
 # Wekea
 
+Ui aplikasi wekea sebagai e-commerce yang menjual berbagai furniture
+
 ### Screenshoot :
 
 <div>
