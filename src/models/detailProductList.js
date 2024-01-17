@@ -3,7 +3,7 @@ const detailProductList = {
   name: 'Lorem ipsum dolor sit amet consectetur adipisicing',
   description:
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-  price: 100000,
+  price: 1000000,
   isDiscount: true,
   discountPercentage: 10,
   discountPrice: 90000,

@@ -1,5 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
+import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import HomePage from '../pages/HomePage';
@@ -113,15 +114,8 @@ export default function Navigation() {
           options={({navigation}) => ({
             gestureEnabled: true,
             presentation: 'modal',
+            headerLeft: () => <View />,
             headerStyle: {backgroundColor: Colors.marronRed},
-            headerLeft: () => (
-              <IconButton
-                iconColor={'#fff'}
-                icon="chevron-left"
-                size={30}
-                onPress={() => navigation.goBack()}
-              />
-            ),
             headerTitleAlign: 'center',
             headerTitleStyle: {...GlobalStyles.mediumFont, color: '#fff'},
           })}

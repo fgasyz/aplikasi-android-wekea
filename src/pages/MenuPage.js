@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
     },
     textUsername: {
         ...GlobalStyles.mediumFont,
-        fontWeight: 'bold',
         color: 'black'
     },
     textAddress: {
@@ -159,7 +158,6 @@ const styles = StyleSheet.create({
     },
     activityTitle: {
         ...GlobalStyles.mediumFont,
-        fontWeight: 'bold',
         marginTop: 25,
         color: 'black'
     },

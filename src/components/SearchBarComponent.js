@@ -12,7 +12,7 @@ export default function SearchBarComponent() {
     <View style={styles.container}>
       <Searchbar
         style={styles.searchbar}
-        iconColor={"grey"}
+        iconColor={Colors.marronRed}
         placeholder="Mau cari apa?"
         placeholderTextColor={'grey'}
         cursorColor={Colors.marronRed}
@@ -26,7 +26,7 @@ export default function SearchBarComponent() {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <IconButton icon="menu" iconColor={"grey"} onPress={() => navigation.navigate("Menu")}/>
+        <IconButton icon="menu" iconColor={Colors.marronRed} onPress={() => navigation.navigate("Menu")}/>
       </View>
     </View>
   );

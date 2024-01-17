@@ -115,7 +115,7 @@ export default function ProductDetailPage({navigation}) {
               {new Intl.NumberFormat('id-ID', {
                 style: 'decimal',
                 currency: 'IDR',
-              }).format(detailProductList.price - 1000)}
+              }).format(detailProductList.price - 100000)}
             </Text>
           </View>
           <View style={styles.avatarDiscount}>
