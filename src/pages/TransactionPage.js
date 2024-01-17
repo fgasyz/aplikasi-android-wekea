@@ -1,15 +1,12 @@
-import {StyleSheet, Text, View, FlatList, Image, Pressable} from 'react-native';
+import {StyleSheet, Text, View, FlatList, Image, Pressable, StatusBar} from 'react-native';
 import React, {useState, useRef} from 'react';
-import {
-  Button,
-  Divider,
-  Searchbar,
-} from 'react-native-paper';
+import {Button, Divider, Searchbar} from 'react-native-paper';
 import GlobalStyles from '../public/GlobalStyles';
-import transactionList from '../models/transactionList';
+import transactionList from '../models/transactionList.js';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 import * as Animatable from 'react-native-animatable';
+
 
 export default function TransactionPage() {
   const transactionStatus = [
@@ -38,7 +35,7 @@ export default function TransactionPage() {
 
   const transactionAnimate = useRef();
 
-  function filterTransactionByStatus(status: string) {
+  function filterTransactionByStatus(status) {
     let result = transactionList.filter(item => item.status == status);
     if (result.length == 0) {
       setFilterData(transactionList);
@@ -51,7 +48,7 @@ export default function TransactionPage() {
 
   return (
     <View style={styles.container}>
-
+     <StatusBar backgroundColor={Colors.marronRed} />
       <Searchbar
         style={styles.searchbar}
         iconColor={Colors.marronRed}
@@ -88,7 +85,7 @@ export default function TransactionPage() {
         data={filterData}
         style={{marginBottom: 50}}
         showsVerticalScrollIndicator={false}
-        renderItem={({item, index}: {item: object; index: number}) => {
+        renderItem={({item, index}) => {
           return (
             <Animatable.View
               key={item.id}
@@ -104,62 +101,32 @@ export default function TransactionPage() {
                   </Text>
                 </View>
               </View>
-              {item?.items?.map(
-                (i: {
-                  id: React.Key | null | undefined;
-                  image: any;
-                  name:
-                    | string
-                    | number
-                    | boolean
-                    | React.ReactElement<
-                        any,
-                        string | React.JSXElementConstructor<any>
-                      >
-                    | Iterable<React.ReactNode>
-                    | React.ReactPortal
-                    | null
-                    | undefined;
-                  qty:
-                    | string
-                    | number
-                    | boolean
-                    | React.ReactElement<
-                        any,
-                        string | React.JSXElementConstructor<any>
-                      >
-                    | Iterable<React.ReactNode>
-                    | React.ReactPortal
-                    | null
-                    | undefined;
-                  price: number | bigint;
-                }) => {
-                  return (
-                    <View style={styles.transactionBody} key={i.id}>
-                      <View style={styles.transactionBodyLeft}>
-                        <Image
-                          source={{uri: i.image}}
-                          style={styles.transactionBodyImage}
-                        />
-                        <View style={styles.transactionBodyText}>
-                          <Text style={styles.transactionBodyTextTitle}>
-                            {i.name}
-                          </Text>
-                          <Text style={styles.transactionBodyTextDesc}>
-                            jumlah: {i.qty}
-                          </Text>
-                        </View>
+              {item?.items?.map(i => {
+                return (
+                  <View style={styles.transactionBody} key={i.id}>
+                    <View style={styles.transactionBodyLeft}>
+                      <Image
+                        source={{uri: i.image}}
+                        style={styles.transactionBodyImage}
+                      />
+                      <View style={styles.transactionBodyText}>
+                        <Text style={styles.transactionBodyTextTitle}>
+                          {i.name}
+                        </Text>
+                        <Text style={styles.transactionBodyTextDesc}>
+                          jumlah: {i.qty}
+                        </Text>
                       </View>
-                      <Text style={{color: 'black'}}>
-                        Rp.
-                        {new Intl.NumberFormat('id-ID', {
-                          currency: 'IDR',
-                        }).format(i.price)}
-                      </Text>
                     </View>
-                  );
-                },
-              )}
+                    <Text style={{color: 'black'}}>
+                      Rp.
+                      {new Intl.NumberFormat('id-ID', {
+                        currency: 'IDR',
+                      }).format(i.price)}
+                    </Text>
+                  </View>
+                );
+              })}
               <Divider />
               <View style={styles.transactionFooter}>
                 <Pressable>
@@ -181,7 +148,7 @@ export default function TransactionPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10
+    padding: 10,
   },
   searchbar: {
     display: 'flex',

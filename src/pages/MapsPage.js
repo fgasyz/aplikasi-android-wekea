@@ -5,20 +5,20 @@ import Carousel from 'react-native-reanimated-carousel'
 import { Card, IconButton, Text } from 'react-native-paper'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import store from '../images/store.png'
-import Colors from '../constants/Colors'
+import Colors from '../constants/Colors.js'
 import GlobalStyles from '../public/GlobalStyles'
 
 export default function MapsPage() {
   const width = Dimensions.get('window').width;
 
-  const mapRef = useRef(null) as any;
-  const scrollCarouselRef = useRef(null) as any;
+  const mapRef = useRef(null);
+  const scrollCarouselRef = useRef(null);
   const mapAnimation = new Animated.Value(0)
   const carouselAnimation = new Animated.Value(0)
   const carouselAnimationRef = useRef(carouselAnimation)
   const [isShowCarousel, setIsShowCarousel] = useState(true)
 
-  const onPressMarker = (mapData: any) => {
+  const onPressMarker = (mapData) => {
     const markerId = mapData._targetInst.return.key;
     scrollCarouselRef.current?.scrollTo({index: +markerId, animated: true})
   }
@@ -57,7 +57,7 @@ export default function MapsPage() {
     },
   ];
 
-  const interpolation = markers.map((_, index: number) => {
+  const interpolation = markers.map((_, index) => {
     const inputRange  = [[index - 1] * width, index * width, [index + 1] * width]
     const scale = mapAnimation.interpolate({
       inputRange,

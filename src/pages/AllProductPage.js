@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 import productList from '../models/productList';
 import GlobalStyles from '../public/GlobalStyles';
 import {IconButton, Searchbar} from 'react-native-paper';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 import * as Animatable from 'react-native-animatable';
 
 export default function AllProductPage({navigation}) {

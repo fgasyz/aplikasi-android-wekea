@@ -12,19 +12,19 @@ import MenuPage from '../pages/MenuPage';
 import {IconButton} from 'react-native-paper';
 import GlobalStyles from '../public/GlobalStyles';
 import ProfilDetailPage from '../pages/ProfilDetailPage';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 import AllProductPage from '../pages/AllProductPage';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const iconsFocused: any = {
+const iconsFocused = {
   Home: 'home',
   Maps: 'map',
   Cart: 'cart',
   Transaction: 'receipt',
 };
-const iconsNotFocused: any = {
+const iconsNotFocused = {
   Home: 'home-outline',
   Maps: 'map-outline',
   Cart: 'cart-outline',
@@ -57,26 +57,38 @@ const BottomTab = () => {
         },
         tabBarHideOnKeyboard: true,
       })}>
-      <Tab.Screen name="Home" component={HomePage} options={{headerShown: false}}/>
-      <Tab.Screen name="Maps" component={MapsPage} options={{headerShown: false}}/>
+      <Tab.Screen
+        name="Home"
+        component={HomePage}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="Maps"
+        component={MapsPage}
+        options={{headerShown: false}}
+      />
       <Tab.Screen
         name="Cart"
         component={CartPage}
         options={{
-          headerTitle: "Keranjang",
-          headerTitleStyle: {color: "#fff"},
-          headerTitleAlign: "center",
+          headerTitle: 'Keranjang',
+          headerTitleStyle: {color: '#fff'},
+          headerTitleAlign: 'center',
           headerStyle: {backgroundColor: Colors.marronRed},
           tabBarBadge: 6,
           tabBarBadgeStyle: {backgroundColor: Colors.red, color: 'white'},
         }}
       />
-      <Tab.Screen name="Transaction" component={TransactionPage} options={{
-        headerStyle: {backgroundColor: Colors.marronRed},
-        headerTitle: "Transaksi",
-        headerTitleStyle: {color: "#fff"},
-        headerTitleAlign: "center",
-      }} />
+      <Tab.Screen
+        name="Transaction"
+        component={TransactionPage}
+        options={{
+          headerStyle: {backgroundColor: Colors.marronRed},
+          headerTitle: 'Transaksi',
+          headerTitleStyle: {color: '#fff'},
+          headerTitleAlign: 'center',
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -104,14 +116,14 @@ export default function Navigation() {
             headerStyle: {backgroundColor: Colors.marronRed},
             headerLeft: () => (
               <IconButton
-                iconColor={"#fff"}
+                iconColor={'#fff'}
                 icon="chevron-left"
                 size={30}
                 onPress={() => navigation.goBack()}
               />
             ),
             headerTitleAlign: 'center',
-            headerTitleStyle: {...GlobalStyles.mediumFont, color: "#fff"},
+            headerTitleStyle: {...GlobalStyles.mediumFont, color: '#fff'},
           })}
         />
         <Stack.Screen
@@ -121,7 +133,7 @@ export default function Navigation() {
             headerStyle: {backgroundColor: Colors.marronRed},
             headerLeft: () => (
               <IconButton
-                iconColor={"#fff"}
+                iconColor={'#fff'}
                 icon="arrow-left"
                 size={30}
                 onPress={() => navigation.goBack()}
@@ -129,7 +141,7 @@ export default function Navigation() {
             ),
             headerTitleAlign: 'center',
             headerTitle: 'Detail Pengguna',
-            headerTitleStyle: {...GlobalStyles.mediumFont, color: "#fff"},
+            headerTitleStyle: {...GlobalStyles.mediumFont, color: '#fff'},
           })}
         />
         <Stack.Screen
@@ -139,7 +151,7 @@ export default function Navigation() {
             headerStyle: {backgroundColor: Colors.marronRed},
             headerLeft: () => (
               <IconButton
-                iconColor={"#fff"}
+                iconColor={'#fff'}
                 icon="arrow-left"
                 size={30}
                 onPress={() => navigation.goBack()}
@@ -147,7 +159,7 @@ export default function Navigation() {
             ),
             headerTitleAlign: 'center',
             headerTitle: 'Semua Produk',
-            headerTitleStyle: {...GlobalStyles.mediumFont, color: "#fff"},
+            headerTitleStyle: {...GlobalStyles.mediumFont, color: '#fff'},
           })}
         />
       </Stack.Navigator>

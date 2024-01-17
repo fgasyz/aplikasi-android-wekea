@@ -2,12 +2,12 @@ import {StyleSheet, TextInput, View} from 'react-native';
 import React from 'react';
 import {IconButton, Searchbar} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 
 export default function SearchBarComponent() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => setSearchQuery(query);
-  const navigation = useNavigation() as any;
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Searchbar

@@ -3,7 +3,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import productList from '../models/productList';
 import CartItemComponent from '../components/CartItemComponent';
 import GlobalStyles from '../public/GlobalStyles';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Dimensions } from 'react-native';
 

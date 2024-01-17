@@ -4,13 +4,13 @@ import {Card, Button, IconButton} from 'react-native-paper';
 import productList from '../models/productList';
 import {useNavigation} from '@react-navigation/native';
 import GlobalStyles from '../public/GlobalStyles';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dimension = Dimensions.get("screen");
 
-export default function ProductComponent() : React.JSX.Element {
-  const navigation = useNavigation() as any;
+export default function ProductComponent(){
+  const navigation = useNavigation();
   return (
     <View style={{flex: 1, marginBottom: 70}}>
       <View

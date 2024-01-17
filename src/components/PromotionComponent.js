@@ -3,7 +3,7 @@ import React from 'react';
 import advertisementList from '../models/advertisementList';
 import GlobalStyles from '../public/GlobalStyles';
 import {Card} from 'react-native-paper';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 
 export default function PromotionComponent() {
   return (
@@ -13,13 +13,13 @@ export default function PromotionComponent() {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
         }}>
         <Text
           style={{
             ...GlobalStyles.regularFont,
             marginBottom: 10,
-            color: "black"
+            color: 'black',
           }}>
           Penawaran minggu ini
         </Text>
@@ -27,15 +27,22 @@ export default function PromotionComponent() {
           style={{
             ...GlobalStyles.smallFont,
             marginBottom: 8,
-            color: "black"
+            color: 'black',
           }}>
           lihat semua
         </Text>
       </View>
-      <ScrollView horizontal={true} contentContainerStyle={{columnGap: 10}} showsHorizontalScrollIndicator={false}>
+      <ScrollView
+        horizontal={true}
+        contentContainerStyle={{columnGap: 10}}
+        showsHorizontalScrollIndicator={false}>
         {advertisementList.map((item, index) => (
           <View key={index} style={styles.card}>
-            <Image source={item.image} style={{height: 130, width: 200, borderRadius: 10}} resizeMode="cover"/>
+            <Image
+              source={item.image}
+              style={{height: 130, width: 200, borderRadius: 10}}
+              resizeMode="cover"
+            />
           </View>
         ))}
       </ScrollView>
@@ -56,6 +63,6 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    borderRadius: 10
+    borderRadius: 10,
   },
 });

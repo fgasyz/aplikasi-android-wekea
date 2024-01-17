@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
 import React from 'react';
 import {IconButton, List} from 'react-native-paper';
 import GlobalStyles from '../public/GlobalStyles';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 
 import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
 import Animated, {SlideInLeft} from 'react-native-reanimated';
@@ -12,12 +12,7 @@ export default function CartItemComponent({
   deleteItem,
   increaseQuantity,
   decreaseQuantity,
-} : {
-  datalist : any,
-  deleteItem : any,
-  increaseQuantity : any,
-  decreaseQuantity : any,
-}) : React.JSX.Element {
+}) {
   return (
     <View>
       <FlatList
@@ -32,14 +27,15 @@ export default function CartItemComponent({
                   renderRightActions={() => (
                     <View style={styles.cartTrashButton}>
                       <IconButton
-                      iconColor={"#fff"}
+                        iconColor={'#fff'}
                         icon="delete"
                         size={24}
                         onPress={() => deleteItem(item.id)}
                       />
                     </View>
                   )}>
-                  <List.Item title=""
+                  <List.Item
+                    title=""
                     style={styles.cartItem}
                     left={() => {
                       return (
@@ -49,10 +45,19 @@ export default function CartItemComponent({
                             style={styles.cartItemImg}
                           />
                           <View>
-                            <Text style={[GlobalStyles.regularFont, {color: Colors.red}]}>
+                            <Text
+                              style={[
+                                GlobalStyles.regularFont,
+                                {color: Colors.red},
+                              ]}>
                               {item.name}
                             </Text>
-                            <Text style={[GlobalStyles.smallFont, {color: "black"}]}>Rp. 
+                            <Text
+                              style={[
+                                GlobalStyles.smallFont,
+                                {color: 'black'},
+                              ]}>
+                              Rp.
                               {new Intl.NumberFormat('id-ID', {
                                 currency: 'IDR',
                               }).format(item.price)}
@@ -90,8 +95,8 @@ export default function CartItemComponent({
 
 const styles = StyleSheet.create({
   cartItem: {
-    backgroundColor: "#fff",
-    paddingHorizontal: 10
+    backgroundColor: '#fff',
+    paddingHorizontal: 10,
   },
   cartItemLeft: {
     justifyContent: 'center',
@@ -126,6 +131,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 10,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
   },
 });

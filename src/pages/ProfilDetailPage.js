@@ -3,7 +3,7 @@ import React from 'react';
 import {Avatar, Divider, IconButton} from 'react-native-paper';
 import GlobalStyles from '../public/GlobalStyles';
 import { ScrollView } from 'react-native-gesture-handler';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors.js';
 
 const dimension = Dimensions.get("screen");
 
